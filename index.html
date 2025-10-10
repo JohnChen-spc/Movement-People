@@ -1,0 +1,1674 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movement People - 为行动者而生的高能量社群</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#32CD32', // 亮绿色
+                        secondary: '#FFD700', // 金黄色
+                        dark: '#0A0A0A', // 深黑色
+                        light: '#F0F0F0', // 浅灰色
+                        neutral: '#121212', // 中性深灰
+                        warning: '#FF4500', // 橙红色，用于增强对比
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 0 15px rgba(50, 205, 50, 0.4), 
+                             0 0 30px rgba(50, 205, 50, 0.2);
+            }
+            .text-shadow-green {
+                text-shadow: 0 0 15px rgba(50, 205, 50, 0.4), 
+                             0 0 30px rgba(50, 205, 50, 0.2);
+            }
+            .text-shadow-warning {
+                text-shadow: 0 0 15px rgba(255, 69, 0, 0.4), 
+                             0 0 30px rgba(255, 69, 0, 0.2);
+            }
+            .btn-pulse {
+                animation: pulse 2s infinite;
+            }
+            .gradient-text {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                background-image: linear-gradient(90deg, #32CD32, #FFD700);
+            }
+            .section-height {
+                min-height: 100vh;
+            }
+            .star-bg {
+                background-image: 
+                    radial-gradient(1px 1px at 10px 20px, rgba(255,255,255,0.8), transparent 1px),
+                    radial-gradient(1px 1px at 30px 60px, rgba(255,255,255,0.6), transparent 1px),
+                    radial-gradient(1px 1px at 50px 150px, rgba(255,255,255,0.7), transparent 1px),
+                    radial-gradient(1px 1px at 80px 30px, rgba(255,255,255,0.5), transparent 1px),
+                    radial-gradient(1px 1px at 120px 70px, rgba(255,255,255,0.6), transparent 1px),
+                    radial-gradient(1px 1px at 150px 110px, rgba(255,255,255,0.8), transparent 1px);
+                background-repeat: repeat;
+                background-size: 200px 200px;
+            }
+            .line-pattern {
+                background-image: 
+                    linear-gradient(rgba(50, 205, 50, 0.15) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(50, 205, 50, 0.15) 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            .grid-lines {
+                background-image: 
+                    linear-gradient(to right, rgba(50, 205, 50, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(50, 205, 50, 0.05) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+            .text-highlight {
+                background-color: rgba(50, 205, 50, 0.15);
+                padding: 0 4px;
+                border-radius: 2px;
+            }
+            .text-highlight-warning {
+                background-color: rgba(255, 69, 0, 0.15);
+                padding: 0 4px;
+                border-radius: 2px;
+            }
+            .heading-highlight {
+                background-color: rgba(50, 205, 50, 0.2);
+                display: inline-block;
+                padding: 0 8px;
+                border-radius: 4px;
+            }
+            .heading-highlight-warning {
+                background-color: rgba(255, 69, 0, 0.2);
+                display: inline-block;
+                padding: 0 8px;
+                border-radius: 4px;
+            }
+            .key-point {
+                font-weight: bold;
+                color: #32CD32;
+                font-size: 1.1em;
+            }
+            .key-point-warning {
+                font-weight: bold;
+                color: #FF4500;
+                font-size: 1.1em;
+            }
+            .stat-number {
+                font-weight: bold;
+                color: #32CD32;
+                transition: all 1s ease-out;
+            }
+            .progress-bar {
+                height: 6px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 3px;
+                overflow: hidden;
+            }
+            .progress-fill {
+                height: 100%;
+                background-color: #32CD32;
+                width: 0;
+                transition: width 1.5s ease-out;
+            }
+            .progress-fill-warning {
+                height: 100%;
+                background-color: #FF4500;
+                width: 0;
+                transition: width 1.5s ease-out;
+            }
+            .card-glow {
+                box-shadow: 0 0 30px rgba(50, 205, 50, 0);
+                transition: box-shadow 0.5s ease;
+            }
+            .card-glow:hover {
+                box-shadow: 0 0 30px rgba(50, 205, 50, 0.15);
+            }
+            .founder-badge {
+                transform: translateY(-50%);
+                box-shadow: 0 4px 20px rgba(50, 205, 50, 0.3);
+            }
+            /* 移动端按钮点击效果 */
+            .btn-mobile {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            .btn-mobile:active {
+                transform: scale(0.96);
+                background-color: #e6c200 !important;
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.6) !important;
+            }
+            /* 故事段落图标样式 */
+            .story-icon {
+                flex-shrink: 0;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background-color: rgba(50, 205, 50, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 4px;
+            }
+            /* 统一转化按钮样式 */
+            .conversion-btn {
+                @apply inline-block bg-secondary hover:bg-secondary/90 text-dark font-bold rounded-md transition-all duration-300 transform hover:scale-105 btn-pulse btn-mobile;
+            }
+            .conversion-btn-large {
+                @apply px-12 py-6 text-xl;
+            }
+            .conversion-btn-medium {
+                @apply px-10 py-5 text-lg;
+            }
+            .conversion-btn-small {
+                @apply px-8 py-4 text-base;
+            }
+            .conversion-btn-full {
+                @apply w-full;
+            }
+            
+            /* 转化动画相关样式 */
+            .conversion-animation-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            
+            .animation-text {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.8s ease-out;
+                text-align: center;
+                margin: 20px 0;
+                max-width: 80%;
+            }
+            
+            .animation-text.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .shine-transition {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .shine-transition::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%
+                );
+                transform: rotate(30deg);
+                animation: shine 2s forwards;
+            }
+            
+            .text-glow {
+                animation: textGlow 1.5s ease-in-out infinite alternate;
+            }
+            
+            /* 背景动画元素 */
+            .energy-wave {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                opacity: 0.3;
+            }
+            
+            .light-beam {
+                position: absolute;
+                width: 2px;
+                background: linear-gradient(to bottom, transparent, #32CD32, transparent);
+                transform-origin: top center;
+                opacity: 0;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(255, 215, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes highlightPulse {
+            0%, 100% {
+                background-color: rgba(50, 205, 50, 0.15);
+            }
+            50% {
+                background-color: rgba(50, 205, 50, 0.3);
+            }
+        }
+        
+        @keyframes warningPulse {
+            0%, 100% {
+                background-color: rgba(255, 69, 0, 0.15);
+            }
+            50% {
+                background-color: rgba(255, 69, 0, 0.3);
+            }
+        }
+        
+        /* 转化动画相关动画 */
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(30deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(30deg);
+            }
+        }
+        
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.5),
+                             0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.8),
+                             0 0 40px rgba(255, 215, 0, 0.5),
+                             0 0 60px rgba(255, 215, 0, 0.3);
+            }
+        }
+        
+        @keyframes energyRise {
+            0% {
+                transform: scale(0.5) translateY(100%);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1.5) translateY(-100%);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes beamFlash {
+            0% {
+                height: 0;
+                opacity: 0;
+            }
+            50% {
+                height: 100%;
+                opacity: 0.8;
+            }
+            100% {
+                height: 0;
+                opacity: 0;
+            }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .highlight-animate {
+            animation: highlightPulse 2s infinite;
+        }
+        
+        .warning-animate {
+            animation: warningPulse 2s infinite;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease forwards;
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 粒子背景容器 */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        /* 滚动动画 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 对比区块交互效果 */
+        .comparison-card.join {
+            transition: all 0.5s ease;
+        }
+        
+        .comparison-card.join:hover {
+            transform: translateY(-10px);
+            border-color: rgba(50, 205, 50, 0.8);
+            box-shadow: 0 15px 30px rgba(50, 205, 50, 0.15);
+        }
+        
+        .comparison-card.not-join {
+            transition: all 0.5s ease;
+        }
+        
+        .comparison-card.not-join:hover {
+            transform: translateY(10px);
+            border-color: rgba(255, 69, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.05);
+        }
+        
+        /* 移动端震动反馈样式 */
+        @keyframes vibrate {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+        
+        .vibrate {
+            animation: vibrate 0.1s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-light font-inter overflow-x-hidden grid-lines">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-montserrat font-black tracking-wider">
+                <span class="text-primary">Movement</span><span class="text-light">People</span>
+                <span class="block text-xs text-light/60 font-normal mt-1">High Energy Community</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#hero" class="hover:text-primary transition-colors">首页 <span class="block text-xs text-light/60">Home</span></a>
+                <a href="#who" class="hover:text-primary transition-colors">适合人群 <span class="block text-xs text-light/60">Who</span></a>
+                <a href="#why" class="hover:text-primary transition-colors">为什么 <span class="block text-xs text-light/60">Why</span></a>
+                <a href="#story" class="hover:text-primary transition-colors">我的故事 <span class="block text-xs text-light/60">Story</span></a>
+                <a href="#how" class="hover:text-primary transition-colors">如何行动 <span class="block text-xs text-light/60">How</span></a>
+                <a href="#join" class="hover:text-primary transition-colors">加入我们 <span class="block text-xs text-light/60">Join</span></a>
+            </div>
+            <button class="md:hidden text-2xl" id="menuToggle">
+                <i class="fa fa-bars text-primary"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div class="md:hidden bg-neutral/95 backdrop-blur-md fixed inset-0 z-50 transform translate-x-full transition-transform duration-300" id="mobileMenu">
+            <div class="flex justify-end p-4">
+                <button class="text-2xl" id="menuClose">
+                    <i class="fa fa-times text-primary"></i>
+                </button>
+            </div>
+            <div class="flex flex-col items-center space-y-8 text-xl pt-16">
+                <a href="#hero" class="hover:text-primary transition-colors">首页 <span class="block text-sm text-light/60">Home</span></a>
+                <a href="#who" class="hover:text-primary transition-colors">适合人群 <span class="block text-sm text-light/60">Who</span></a>
+                <a href="#why" class="hover:text-primary transition-colors">为什么 <span class="block text-sm text-light/60">Why</span></a>
+                <a href="#story" class="hover:text-primary transition-colors">我的故事 <span class="block text-sm text-light/60">Story</span></a>
+                <a href="#how" class="hover:text-primary transition-colors">如何行动 <span class="block text-sm text-light/60">How</span></a>
+                <a href="#join" class="hover:text-primary transition-colors">加入我们 <span class="block text-sm text-light/60">Join</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero区（第一页） -->
+    <section id="hero" class="relative section-height flex items-center justify-center overflow-hidden star-bg">
+        <!-- 粒子背景 -->
+        <div id="particles-js"></div>
+        
+        <!-- 背景图 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/id/176/1920/1080" alt="高能量训练动作剪影" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/90 to-dark"></div>
+        </div>
+        
+        <!-- 装饰线条 -->
+        <div class="absolute inset-0 line-pattern opacity-20 z-0"></div>
+        
+        <!-- 内容 -->
+        <div class="container mx-auto px-4 z-10 text-center">
+            <h1 class="font-montserrat font-black text-[clamp(2.5rem,8vw,5rem)] leading-none mb-6 text-shadow reveal">
+                <span class="heading-highlight">运动，不只是流汗，<br class="md:hidden">而是<span class="key-point">唤醒</span>。</span>
+                <span class="block text-[clamp(1.5rem,4vw,2.5rem)] mt-4 text-primary text-shadow-green heading-highlight">Join Movement People ——<br class="md:hidden"> 为在行动中觉醒的人而生。</span>
+            </h1>
+            <p class="text-[clamp(1.1rem,3vw,1.5rem)] max-w-2xl mx-auto mb-10 text-light/90 reveal">
+                <span class="text-highlight">无论你是教练、创业者，还是只是想让自己更强的人——<br class="md:hidden">
+                我们是一群以运动为入口，追求<span class="key-point">极致成长</span>的行动者。</span>
+                <span class="block mt-4 text-[clamp(1rem,2vw,1.2rem)] text-primary/80 text-highlight">
+                    "Don't just move your body — Move your life."
+                </span>
+            </p>
+            <button class="conversion-btn conversion-btn-large conversion-btn-full reveal" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                申请加入社群 →「我准备觉醒了」
+                <span class="block text-base mt-1 font-normal">限额内测中，需15分钟1对1面谈</span>
+            </button>
+        </div>
+        
+        <!-- 向下滚动指示 -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#who" class="text-light/70 hover:text-primary transition-colors">
+                <i class="fa fa-angle-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 2. WHO区块（第二页） -->
+    <section id="who" class="section-height py-20 relative star-bg">
+        <!-- 背景装饰 -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute inset-0 line-pattern opacity-20 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="font-montserrat font-bold text-[clamp(1.8rem,4vw,2.5rem)] mb-2 reveal">
+                    <span class="heading-highlight">Movement People 适合你，如果你是：</span>
+                </h2>
+                <p class="text-center text-light/70 mb-16">Who Movement People is for</p>
+                
+                <div class="space-y-8 text-lg reveal">
+                    <div class="flex items-start gap-4 group">
+                        <div class="text-primary mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-check-circle text-2xl"></i></div>
+                        <div>
+                            <p class="text-highlight group-hover:highlight-animate transition-all duration-300"><span class="key-point">💪 想通过运动、习惯、自律找回力量的人</span></p>
+                            <p class="text-primary/70 text-sm mt-2">
+                                我们预期社群成员在30天内<br>
+                                <span class="stat-number" data-target="80">0</span>% 将体验到能量水平显著提升<br>
+                                </p><div class="progress-bar mt-1">
+                                    <div class="progress-fill" data-width="80%"></div>
+                                </div>
+                            <p></p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 group">
+                        <div class="text-primary mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-check-circle text-2xl"></i></div>
+                        <div>
+                            <p class="text-highlight group-hover:highlight-animate transition-all duration-300"><span class="key-point">🧠 想把"自律"变成事业、影响力的创业者</span></p>
+                            <p class="text-primary/70 text-sm mt-2">
+                                我们预计教练和创业者成员中<br>
+                                <span class="stat-number" data-target="60">0</span>% 将在6个月内实现收入增长30%+<br>
+                                </p><div class="progress-bar mt-1">
+                                    <div class="progress-fill" data-width="60%"></div>
+                                </div>
+                            <p></p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 group">
+                        <div class="text-primary mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-check-circle text-2xl"></i></div>
+                        <div>
+                            <p class="text-highlight group-hover:highlight-animate transition-all duration-300"><span class="key-point">🚀 想摆脱孤军奋战，找到一群共振者</span></p>
+                            <p class="text-primary/70 text-sm mt-2">
+                                预计加入社群后，目标完成率将达到<br>
+                                <span class="stat-number" data-target="90">0</span>%，远超独自行动的38%<br>
+                                </p><div class="progress-bar mt-1">
+                                    <div class="progress-fill" data-width="90%"></div>
+                                </div>
+                            <p></p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 group">
+                        <div class="text-primary mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-check-circle text-2xl"></i></div>
+                        <div>
+                            <p class="text-highlight group-hover:highlight-animate transition-all duration-300"><span class="key-point">🧭 相信成长不只是赚钱，而是觉醒与行动的人</span></p>
+                            <p class="text-primary/70 text-sm mt-2">
+                                预期成员生活满意度提升可达<br>
+                                <span class="stat-number" data-target="75">0</span>%，远超行业平均水平<br>
+                                </p><div class="progress-bar mt-1">
+                                    <div class="progress-fill" data-width="75%"></div>
+                                </div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 转化按钮 - 新增移动端转化点 -->
+                <div class="mt-12 mb-8 md:hidden reveal scale-in">
+                    <button class="conversion-btn conversion-btn-medium conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                        我符合这些特质 → 立即加入
+                    </button>
+                </div>
+                
+                <div class="mt-16 reveal">
+                    <h3 class="font-montserrat font-bold text-xl mb-6 text-warning text-shadow-warning heading-highlight-warning">不适合你，如果你：</h3>
+                    
+                    <div class="space-y-6 text-lg reveal">
+                        <div class="flex items-start gap-4 group">
+                            <div class="text-warning mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-times-circle text-2xl"></i></div>
+                            <div>
+                                <p class="text-highlight-warning group-hover:warning-animate transition-all duration-300"><span class="key-point-warning">❌ 只想"被带领"、不愿行动</span></p>
+                                <p class="text-warning/70 text-sm mt-2">
+                                    这类人群在社群中的留存预期仅<br>
+                                    <span class="stat-number" data-target="15" data-warning="true">0</span>%，远低于平均水平<br>
+                                    </p><div class="progress-bar mt-1">
+                                        <div class="progress-fill-warning" data-width="15%"></div>
+                                    </div>
+                                <p></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 group">
+                            <div class="text-warning mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-times-circle text-2xl"></i></div>
+                            <div>
+                                <p class="text-highlight-warning group-hover:warning-animate transition-all duration-300"><span class="key-point-warning">❌ 只想发泄，不想改变</span></p>
+                                <p class="text-warning/70 text-sm mt-2">
+                                    研究表明，单纯发泄而不行动的人<br>
+                                    <span class="stat-number" data-target="85" data-warning="true">0</span>% 会在3个月内放弃成长计划<br>
+                                    </p><div class="progress-bar mt-1">
+                                        <div class="progress-fill-warning" data-width="85%"></div>
+                                    </div>
+                                <p></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 group">
+                            <div class="text-warning mt-1 transform transition-transform group-hover:scale-125"><i class="fa fa-times-circle text-2xl"></i></div>
+                            <div>
+                                <p class="text-highlight-warning group-hover:warning-animate transition-all duration-300"><span class="key-point-warning">❌ 没有执行力，只想看看别人怎么做</span></p>
+                                <p class="text-warning/70 text-sm mt-2">
+                                    观望者的成长速度比行动者慢<br>
+                                    <span class="stat-number" data-target="70" data-warning="true">0</span>%，差距持续扩大<br>
+                                    </p><div class="progress-bar mt-1">
+                                        <div class="progress-fill-warning" data-width="70%"></div>
+                                    </div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 转化按钮 -->
+                <div class="mt-16 reveal scale-in">
+                    <button class="conversion-btn conversion-btn-medium conversion-btn-full md:w-auto" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                        我符合这些特质 → 立即加入
+                        <span class="block text-base mt-1 font-normal hidden md:block">Join now if you identify with these qualities</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 向下滚动指示 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#why" class="text-light/70 hover:text-primary transition-colors">
+                    <i class="fa fa-angle-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. WHY区块（第三页） -->
+    <section id="why" class="section-height py-20 relative star-bg">
+        <div class="absolute inset-0 line-pattern opacity-30 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <!-- 左侧文案 -->
+                <div class="md:w-1/2 reveal">
+                    <h2 class="text-primary font-montserrat font-bold text-2xl mb-2 heading-highlight">为什么要加入Movement People？</h2>
+                    <p class="text-light/70 mb-6">Why Join Movement People?</p>
+                    
+                    <p class="text-lg mb-6 leading-relaxed">
+                        <span class="text-highlight">你不是缺动力，而是缺一群在路上的人。<br>
+                        加入社群 = <span class="key-point">提升成长速度与明确方向</span>。</span>
+                        <span class="block mt-4 text-primary/80 text-highlight">
+                            It's not about lacking motivation, but lacking companions on the journey.<br>
+                            Joining the community = accelerating growth and clarifying direction.
+                        </span>
+                    </p>
+                    
+                    <!-- 核心价值图标 -->
+                    <div class="space-y-6 mt-10">
+                        <div class="flex gap-4 items-start p-4 bg-neutral/40 rounded-lg border border-primary/20 group hover:border-primary/50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <i class="fa fa-users text-lg" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary text-highlight">一个"共振环境"，让自律不再孤单</h4>
+                                <p class="text-light/70 text-sm mt-1">Surround yourself with like-minded people who keep you accountable</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 items-start p-4 bg-neutral/40 rounded-lg border border-primary/20 group hover:border-primary/50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <i class="fa fa-calendar-check-o text-lg" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary text-highlight">每周挑战 × 行动日志 × 成长打卡，强化执行力</h4>
+                                <p class="text-light/70 text-sm mt-1">Weekly challenges, action logs and growth check-ins to strengthen execution</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 items-start p-4 bg-neutral/40 rounded-lg border border-primary/20 group hover:border-primary/50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <i class="fa fa-comments text-lg" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary text-highlight">私域导师 &amp; 觉醒对谈，带你看清下一步方向</h4>
+                                <p class="text-light/70 text-sm mt-1">Private mentors &amp; awakening conversations to clarify your next steps</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 items-start p-4 bg-neutral/40 rounded-lg border border-primary/20 group hover:border-primary/50 transition-all duration-300">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                <i class="fa fa-book text-lg" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary text-highlight">学习内容：身心觉知、习惯养成、行动哲学、个人品牌思维</h4>
+                                <p class="text-light/70 text-sm mt-1">Learning content: body-mind awareness, habit formation, action philosophy, personal branding</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧图片 -->
+                <div class="md:w-1/2 relative reveal">
+                    <div class="relative z-10 rounded-lg overflow-hidden transform rotate-2 hover:rotate-0 transition-transform duration-500 shadow-2xl shadow-primary/10">
+                        <img src="https://picsum.photos/id/175/800/1000" alt="高能量训练场景" class="w-full h-auto">
+                    </div>
+                    <!-- 装饰元素 -->
+                    <div class="absolute -bottom-6 -left-6 w-64 h-64 bg-primary/20 rounded-full blur-3xl z-0"></div>
+                    <div class="absolute -top-6 -right-6 w-64 h-64 bg-secondary/20 rounded-full blur-3xl z-0"></div>
+                </div>
+            </div>
+            
+            <!-- 转化按钮 - 新增移动端转化点 -->
+            <div class="mt-12 text-center md:hidden reveal">
+                <button class="conversion-btn conversion-btn-medium conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                    我要加入高能量社群
+                </button>
+            </div>
+            
+            <!-- 向下滚动指示 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#story" class="text-light/70 hover:text-primary transition-colors">
+                    <i class="fa fa-angle-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 创始人John介绍 -->
+    <div class="max-w-3xl mx-auto text-center py-16 reveal">
+        <div class="relative inline-block">
+            <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-primary mx-auto mb-4">
+                <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/82733a31632f4f33ac145bacb2dd1b77~tplv-a9rns2rl98-image.image?rcl=20251010082804A4668FC44F4BE6C96DCA&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1760660886&amp;x-signature=ahRjtujHmDx22lwNpxj19gqEuHs%3D" alt="创始人John照片" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -top-3 -right-3 bg-primary text-dark font-bold px-3 py-1 rounded-full text-sm founder-badge">创始人</div>
+        </div>
+        <h3 class="font-montserrat font-bold text-2xl mb-2 text-primary">John Chen</h3>
+        <p class="text-light/80 italic mb-4">"运动在我面对挑战时给到我勇气，在我情绪坠落悬崖时拉过我一把，创立Movement People，就是希望给每一个渴望成长的人，每一个陷入困境的人，打造一个真正能激发行动与共鸣的能量场。"</p>
+        <p class="text-light/60 text-sm">运动体能教练 · 商业顾问 · 创业者赋能导师</p>
+        
+        <!-- 转化按钮 - 新增移动端转化点 -->
+        <div class="mt-8 md:hidden">
+            <button class="conversion-btn conversion-btn-small conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                向John学习 → 加入社群
+            </button>
+        </div>
+    </div>
+
+    <!-- 4. 个人故事区块（第四页） -->
+    <section id="story" class="section-height py-20 relative star-bg">
+        <div class="absolute inset-0 line-pattern opacity-30 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-center font-montserrat font-bold text-[clamp(1.8rem,4vw,2.5rem)] mb-16 reveal">
+                <span class="heading-highlight">这是我的故事，也是许多人<span class="key-point">未被听见</span>的故事</span>
+            </h2>
+            
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <!-- 左侧图片 -->
+                <div class="md:w-2/5 relative reveal">
+                    <div class="relative z-10 rounded-lg overflow-hidden transform -rotate-2 hover:rotate-0 transition-transform duration-500 shadow-2xl shadow-primary/10">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3d790580542a400da48cc2af64d03283~tplv-a9rns2rl98-image.image?rcl=20251010103658F037BF17E3BEF9A45C9D&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1760668620&amp;x-signature=UrA6dDGBhz58CyOvUyTA6IyG%2FTw%3D" alt="John的故事配图" class="w-full h-auto">
+                    </div>
+                    <!-- 装饰元素 -->
+                    <div class="absolute -bottom-6 -left-6 w-64 h-64 bg-primary/20 rounded-full blur-3xl z-0"></div>
+                    <div class="absolute -top-6 -right-6 w-64 h-64 bg-secondary/20 rounded-full blur-3xl z-0"></div>
+                </div>
+                
+                <!-- 右侧故事内容 - 优化移动端阅读体验 -->
+                <div class="md:w-3/5 space-y-8 text-lg leading-relaxed reveal">
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-basketball-ball text-primary text-sm"></i></span>
+                        <span>我最爱打篮球。<br>
+                        那时候，我以为只要<span class="key-point">够拼</span>，就能赢。</span>
+                    </p>
+                    
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-heartbeat text-primary text-sm"></i></span>
+                        <span>后来我进了田径队，<span class="key-point">拼得更狠</span>，也<span class="key-point">伤得更深</span>。<br>
+                        医生要我休息，教练叫我忍一忍。<br>
+                        但没人告诉我——<span class="key-point">痛，不只是身体的事</span>。</span>
+                    </p>
+                    
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-book text-primary text-sm"></i></span>
+                        <span>我开始自己找答案。<br>
+                        啃了十几本训练与康复的书，<br>
+                        花光零花钱去上课、去试、去失败。<br>
+                        慢慢地，我从"那个常常受伤的运动员"，<br>
+                        变成了别人请教的<span class="key-point">教练</span>。</span>
+                    </p>
+                    
+                    <!-- 转化按钮 - 故事中段新增转化点 -->
+                    <div class="md:hidden">
+                        <button class="conversion-btn conversion-btn-small conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                            我也想改变 → 加入社群
+                        </button>
+                    </div>
+                    
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-clock-o text-primary text-sm"></i></span>
+                        <span>可没想到，新的困境又来了——<br>
+                        早上九点第一堂课，晚上九点最后一堂课。<br>
+                        每次想休息，就代表<span class="key-point">少一份收入</span>。</span>
+                    </p>
+                    
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-chain text-primary text-sm"></i></span>
+                        <span>我以为我在<span class="key-point">自由创业</span>，<br>
+                        其实只是换了一种方式被"系统绑架"。</span>
+                    </p>
+                    
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-lightbulb-o text-primary text-sm"></i></span>
+                        <span>那天，我做了一个没人理解的决定：<br>
+                        停掉70%的课，开始学习<span class="key-point">商业</span>。<br>
+                        不是为了多赚钱，<br>
+                        而是为了重新掌控我的<span class="key-point">人生</span>。</span>
+                    </p>
+                    
+                    <p class="text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-line-chart text-primary text-sm"></i></span>
+                        <span>一年后，收入涨了<span class="key-point">120%</span>。<br>
+                        但我更在意的，是那个早晨：<br>
+                        我不用赶场，也不用迎合任何人。<br>
+                        我终于知道，什么叫<span class="key-point">自由</span>。</span>
+                    </p>
+                    
+                    <p class="text-primary text-shadow-green text-xl mt-8 mb-10 text-highlight flex gap-4">
+                        <span class="story-icon"><i class="fa fa-users text-primary"></i></span>
+                        <span>后来我发现，很多人都有相似的故事。<br>
+                        有人因为<span class="key-point">热爱</span>开始运动，<br>
+                        有人因为<span class="key-point">痛苦</span>重新出发，<br>
+                        也有人在运动里找到自己的<span class="key-point">方向</span>。<br><br>
+                        这就是我建立这个社群的原因——<br>
+                        它叫 <span class="key-point">Movement People</span>。<br>
+                        我们记录、分享、连接每一个被运动改变的人。</span>
+                    </p>
+                    
+                    <!-- CTA按钮 -->
+                    <div class="mt-8">
+                        <button class="conversion-btn conversion-btn-medium conversion-btn-full md:w-auto" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                            📩 提交你的故事 / 加入社群
+                            <span class="block text-base mt-1 font-normal">Share Your Story / Join Community</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 向下滚动指示 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#comparison" class="text-light/70 hover:text-primary transition-colors">
+                    <i class="fa fa-angle-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 对比区块（第五页） -->
+    <section id="comparison" class="py-20 relative star-bg section-height">
+        <div class="absolute inset-0 line-pattern opacity-30 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-center font-montserrat font-bold text-[clamp(1.8rem,4vw,2.5rem)] mb-16 reveal">
+                <span class="gradient-text heading-highlight">加入Movement People</span> vs <span class="text-warning heading-highlight-warning">继续孤军奋战</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- 加入会得到的 -->
+                <div class="bg-gradient-to-br from-neutral to-dark p-8 rounded-2xl border border-primary/40 relative overflow-hidden reveal shadow-lg shadow-primary/5 comparison-card join">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-primary/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                    
+                    <h3 class="font-montserrat font-bold text-2xl mb-8 text-primary text-shadow-green heading-highlight">加入后你将获得</h3>
+                    <h4 class="text-light/60 mb-10 text-center">What You Gain</h4>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center text-primary">
+                                <i class="fa fa-bolt text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-primary text-highlight">每天被行动者包围的<span class="key-point">能量场</span></h4>
+                                <p class="text-light/70 font-medium text-highlight"><span class="key-point">释放潜能</span>，<span class="key-point">突破平庸</span>，<span class="key-point">加速实现目标</span></p>
+                                <p class="text-light/60 mt-2">不再孤军奋战，每天都被一群高能量的人推动，让你更快接近目标，突破平庸状态。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center text-primary">
+                                <i class="fa fa-clock-o text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-primary text-highlight">重建<span class="key-point">节奏与自律</span>，掌控未来</h4>
+                                <p class="text-light/70 font-medium text-highlight"><span class="key-point">释放潜能</span>，建立<span class="key-point">可持续的高效能状态</span></p>
+                                <p class="text-light/60 mt-2">每周挑战 + 每日打卡，让你的执行力、习惯和生活节奏恢复掌控，为更大目标打下基础。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center text-primary">
+                                <i class="fa fa-map-o text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-primary text-highlight">清晰<span class="key-point">行动指南</span>与<span class="key-point">成长仪式感</span></h4>
+                                <p class="text-light/70 font-medium text-highlight"><span class="key-point">释放潜能</span>，每一步都在推进<span class="key-point">人生跃迁</span></p>
+                                <p class="text-light/60 mt-2">不只是运动，还有任务、仪式和行动体系，让你每一步都在推进人生和事业的跃迁。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center text-primary">
+                                <i class="fa fa-fire text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-primary text-highlight"><span class="key-point">归属感</span> + 高能量社群<span class="key-point">加速成长</span></h4>
+                                <p class="text-light/70 font-medium text-highlight"><span class="key-point">释放潜能</span>，<span class="key-point">系统驱动</span>你离目标更近</p>
+                                <p class="text-light/60 mt-2"><span class="key-point">有问题有人答</span>，<span class="key-point">有动力有人推</span>，<span class="key-point">成功不再依赖意志力</span>，而是<span class="key-point">系统驱动</span>，让你离目标更近。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 不加入会得到的 -->
+                <div class="bg-gradient-to-br from-dark to-neutral/30 p-8 rounded-2xl border border-warning/30 relative overflow-hidden reveal shadow-lg shadow-warning/5 comparison-card not-join">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-warning/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                    
+                    <h3 class="font-montserrat font-bold text-2xl mb-8 text-warning text-shadow-warning heading-highlight-warning">不加入你将失去</h3>
+                    <h4 class="text-warning/60 mb-10 text-center">What You Lose</h4>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-warning/20 flex items-center justify-center text-warning">
+                                <i class="fa fa-user-o text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-warning text-highlight-warning">继续<span class="key-point-warning">孤军奋斗</span>，<span class="key-point-warning">延缓目标实现</span></h4>
+                                <p class="text-warning/70 font-medium text-highlight-warning"><span class="key-point-warning">潜力受限</span>，距离理想状态越来越远</p>
+                                <p class="text-light/50 mt-2">想改变，却缺乏环境和节奏，只能靠意志力推进，距离理想状态越来越远。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-warning/20 flex items-center justify-center text-warning">
+                                <i class="fa fa-pause text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-warning text-highlight-warning"><span class="key-point-warning">状态断层</span>与<span class="key-point-warning">拖延感持续</span></h4>
+                                <p class="text-warning/70 font-medium text-highlight-warning"><span class="key-point-warning">潜力受限</span>，未来目标难以达成</p>
+                                <p class="text-light/50 mt-2">没有每日/每周行动框架，你的执行力和习惯无法稳定，未来目标也难以达成。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-warning/20 flex items-center justify-center text-warning">
+                                <i class="fa fa-tachometer text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-warning text-highlight-warning">错失<span class="key-point-warning">高能量集体加速效应</span></h4>
+                                <p class="text-warning/70 font-medium text-highlight-warning"><span class="key-point-warning">潜力受限</span>，目标实现速度远低于预期</p>
+                                <p class="text-light/50 mt-2">你只能自己摸索突破，而行动力被环境拖慢，目标实现速度远低于潜力。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-warning/20 flex items-center justify-center text-warning">
+                                <i class="fa fa-ban text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-2 text-warning text-highlight-warning">错过<span class="key-point-warning">觉醒体验</span>与<span class="key-point-warning">成长机会</span></h4>
+                                <p class="text-warning/70 font-medium text-highlight-warning"><span class="key-point-warning">潜力受限</span>，人生跃迁被无限期延迟</p>
+                                <p class="text-light/50 mt-2">没有人引导你挑战极限，也没有集体仪式感，让你未来生活和事业的跃升被延迟。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 转化按钮 - 新增移动端转化点 -->
+            <div class="mt-8 md:hidden text-center reveal">
+                <button class="conversion-btn conversion-btn-medium conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                    选择加入，加速成长
+                </button>
+            </div>
+            
+            <!-- 底部CTA按钮 -->
+            <div class="text-center mt-16 reveal">
+                <button class="conversion-btn conversion-btn-large conversion-btn-full md:w-auto" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                    🔥 我选择 Movement People → 离未来更近
+                    <span class="block text-base mt-1 font-normal">Choose your accelerated future</span>
+                </button>
+            </div>
+            
+            <!-- 向下滚动指示 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#how" class="text-light/70 hover:text-primary transition-colors">
+                    <i class="fa fa-angle-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. HOW区块（第六页） -->
+    <section id="how" class="section-height py-20 bg-gradient-to-b from-dark to-neutral star-bg">
+        <div class="absolute inset-0 line-pattern opacity-20 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-center font-montserrat font-bold text-[clamp(1.8rem,4vw,2.5rem)] mb-2 reveal">
+                我们如何<span class="text-primary heading-highlight">行动</span>
+            </h2>
+            <p class="text-center text-light/70 mb-16 max-w-2xl mx-auto">How We <span class="text-primary heading-highlight">Operate</span></p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 模块卡片1 -->
+                <div class="bg-neutral/40 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 reveal card-glow">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://picsum.photos/id/177/800/500" alt="每周挑战任务" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+                            <i class="fa fa-flag-checkered text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-1 text-primary text-highlight">每周<span class="key-point">挑战任务</span></h3>
+                        <p class="text-light/70 text-sm mb-3">Weekly Challenge Missions</p>
+                        <p class="text-light/80">精心设计的阶段性任务，逐步提升你的能量与执行力，每次完成都是一次<span class="key-point">突破</span>。
+                            <span class="block mt-2 text-primary/70 text-sm text-highlight">
+                                Carefully designed progressive tasks to enhance your energy and execution.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 模块卡片2 -->
+                <div class="bg-neutral/40 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 reveal card-glow" style="transition-delay: 0.2s">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/755b3fc54496477eb73471aa01407925~tplv-a9rns2rl98-image.image?rcl=20251010085813FC0A1B1A87A0E8C29916&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760662697&amp;x-signature=Z8YbDoeV9eVqHNjk8Ugd56QL5Lw%3D" alt="每日能量打卡" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+                            <i class="fa fa-calendar-check-o text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-1 text-primary text-highlight">每日<span class="key-point">能量打卡</span></h3>
+                        <p class="text-light/70 text-sm mb-3">Daily Energy Check-in</p>
+                        <p class="text-light/80">记录行动与感受，建立正向反馈循环，让<span class="key-point">自律成为自然</span>。
+                            <span class="block mt-2 text-primary/70 text-sm text-highlight">
+                                Track actions and feelings to build positive feedback loops.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 模块卡片3 -->
+                <div class="bg-neutral/40 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 reveal card-glow" style="transition-delay: 0.4s">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/b882a463c5c149eeb2ad76fa84db7cbb~tplv-a9rns2rl98-image.image?rcl=202510100852217535B5CF67CEDFC9E053&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760662346&amp;x-signature=WlKnOpgMxO%2Bz4DizNyc7UdBgoNA%3D" alt="能量共振区" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+                            <i class="fa fa-comments text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-1 text-primary text-highlight">能量<span class="key-point">共振区</span></h3>
+                        <p class="text-light/70 text-sm mb-3">Energy Resonance Zone</p>
+                        <p class="text-light/80">社群成员实时分享行动与突破，集体能量互相激发，创造<span class="key-point">无限可能</span>。
+                            <span class="block mt-2 text-primary/70 text-sm text-highlight">
+                                Real-time sharing creates collective energy that inspires infinite possibilities.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 模块卡片4 -->
+                <div class="bg-neutral/40 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 reveal card-glow" style="transition-delay: 0.6s">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://picsum.photos/id/180/800/500" alt="成长仪式" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+                            <i class="fa fa-trophy text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-1 text-primary text-highlight"><span class="key-point">成长仪式</span></h3>
+                        <p class="text-light/70 text-sm mb-3">Growth Ceremonies</p>
+                        <p class="text-light/80">月度线上/线下聚会，庆祝突破，设定新目标，强化集体<span class="key-point">归属感与行动力</span>。
+                            <span class="block mt-2 text-primary/70 text-sm text-highlight">
+                                Monthly events to celebrate breakthroughs and set new goals.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 模块卡片5 -->
+                <div class="bg-neutral/40 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 reveal card-glow" style="transition-delay: 0.8s">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/6bd3cedc7397476fab48ca46285fbcaf~tplv-a9rns2rl98-image.image?rcl=202510100845080240D15BC6C42F9A61BD&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760661912&amp;x-signature=8qc3mT8QoauaTwQHhpST%2FxrxD%2Bk%3D" alt="导师对谈" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+                            <i class="fa fa-user-circle text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-1 text-primary text-highlight">导师<span class="key-point">深度对谈</span></h3>
+                        <p class="text-light/70 text-sm mb-3">Mentor Deep Talks</p>
+                        <p class="text-light/80">John与行业专家定期分享，解答困惑，助你<span class="key-point">突破瓶颈</span>，明确方向。
+                            <span class="block mt-2 text-primary/70 text-sm text-highlight">
+                                Regular sharing sessions with experts to help you break through bottlenecks.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 模块卡片6 -->
+                <div class="bg-neutral/40 backdrop-blur-sm border border-primary/20 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 transform hover:-translate-y-2 reveal card-glow" style="transition-delay: 1s">
+                    <div class="h-52 overflow-hidden">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/db03baee0d65493f88a25d489706ee16~tplv-a9rns2rl98-image.image?rcl=20251010124901202823F03AA50AB45634&amp;rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1760676547&amp;x-signature=ZNp7D77UlCPo%2Bf%2B%2Fz%2F%2F7up2gW7E%3D" alt="资源共享库" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-4">
+                            <i class="fa fa-book text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-1 text-primary text-highlight">专属<span class="key-point">资源库</span></h3>
+                        <p class="text-light/70 text-sm mb-3">Exclusive Resource Library</p>
+                        <p class="text-light/80">精选训练计划、习惯养成工具、创业指南，<span class="key-point">节省时间</span>，少走弯路。
+                            <span class="block mt-2 text-primary/70 text-sm text-highlight">
+                                Curated resources to save time and avoid detours in your journey.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 转化按钮 - 新增移动端转化点 -->
+            <div class="mt-8 md:hidden text-center reveal">
+                <button class="conversion-btn conversion-btn-medium conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                    立即加入，开始行动
+                </button>
+            </div>
+            
+            <!-- CTA按钮 -->
+            <div class="text-center mt-16 reveal">
+                <button class="conversion-btn conversion-btn-large conversion-btn-full md:w-auto" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                    🔥 立即加入，加速未来
+                    <span class="block text-base mt-1 font-normal">Join now, accelerate your future</span>
+                </button>
+            </div>
+            
+            <!-- 向下滚动指示 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#join" class="text-light/70 hover:text-primary transition-colors">
+                    <i class="fa fa-angle-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. JOIN区块（第七页） -->
+    <section id="join" class="section-height py-20 relative star-bg">
+        <!-- 背景装饰 -->
+        <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-secondary/10 blur-3xl"></div>
+        <div class="absolute inset-0 line-pattern opacity-20 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h2 class="text-center font-montserrat font-bold text-[clamp(1.8rem,4vw,2.5rem)] mb-2 reveal">
+                如何加入<span class="gradient-text heading-highlight">Movement People</span>
+            </h2>
+            <p class="text-center text-light/70 mb-16">How to Join <span class="gradient-text heading-highlight">Movement People</span></p>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- 步骤 -->
+                <div class="space-y-12 reveal">
+                    <!-- 步骤1 -->
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary font-montserrat font-bold text-2xl border-2 border-primary">
+                            1
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold text-xl mb-1 text-primary text-highlight">点击"加入Movement People"</h3>
+                            <p class="text-light/70 text-sm mb-2">Click "Join Movement People"</p>
+                            <p class="text-light/80">填写基本信息，迈出<span class="key-point">加速成长</span>的第一步。
+                                <span class="block mt-1 text-primary/70 text-sm text-highlight">
+                                    Fill in basic information, take the first step toward accelerated growth.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 转化按钮 - 步骤之间新增转化点 -->
+                    <div class="md:hidden text-center">
+                        <button class="conversion-btn conversion-btn-small conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                            开始第一步 → 加入社群
+                        </button>
+                    </div>
+                    
+                    <!-- 步骤2 -->
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary font-montserrat font-bold text-2xl border-2 border-primary">
+                            2
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold text-xl mb-1 text-primary text-highlight">完成行动者评估问卷</h3>
+                            <p class="text-light/70 text-sm mb-2">Complete the Doer Assessment Questionnaire</p>
+                            <p class="text-light/80">帮助我们了解你的目标与状态，确保社群能<span class="key-point">精准支持</span>你的成长。
+                                <span class="block mt-1 text-primary/70 text-sm text-highlight">
+                                    Help us understand your goals and status to ensure precise support for your growth.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤3 -->
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary font-montserrat font-bold text-2xl border-2 border-primary">
+                            3
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold text-xl mb-1 text-primary text-highlight">审核通过 → 收到入群指南</h3>
+                            <p class="text-light/70 text-sm mb-2">Approval → Receive Community Guide</p>
+                            <p class="text-light/80">我们会在48小时内完成审核，通过后你将收到入群指南和<span class="key-point">第一个任务</span>。
+                                <span class="block mt-1 text-primary/70 text-sm text-highlight">
+                                    We'll review within 48 hours. Upon approval, you'll receive your guide and first mission.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤4 -->
+                    <div class="flex flex-col md:flex-row gap-6 items-center">
+                        <div class="flex-shrink-0 w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary font-montserrat font-bold text-2xl border-2 border-primary">
+                            4
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="font-bold text-xl mb-1 text-primary text-highlight">加入社群，开始能量共振</h3>
+                            <p class="text-light/70 text-sm mb-2">Join community, start energy resonance</p>
+                            <p class="text-light/80">进入专属社群，连接高能量同伴，开始你的<span class="key-point">加速成长之旅</span>。
+                                <span class="block mt-1 text-primary/70 text-sm text-highlight">
+                                    Enter the exclusive community, connect with high-energy peers, start your journey.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 稀缺提醒 -->
+                <div class="mt-12 p-6 bg-dark/60 border border-primary/30 rounded-lg text-center reveal">
+                    <p class="text-lg"><i class="fa fa-exclamation-circle text-primary mr-2"></i><span class="text-highlight">本期仅开放<span class="key-point">50个名额</span>，确保社群能量密度</span></p>
+                    <p class="text-primary/70 text-sm mt-1"><i class="fa fa-exclamation-circle text-primary mr-2"></i>Only 50 spots available to ensure community energy density</p>
+                </div>
+                
+                <!-- CTA按钮 -->
+                <div class="mt-12 text-center reveal">
+                    <button class="conversion-btn conversion-btn-large conversion-btn-full md:w-auto" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                        🔥 我选择 Movement People → 离未来更近
+                        <span class="block text-base mt-1 font-normal">Choose your accelerated future</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 向下滚动指示 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#final-cta" class="text-light/70 hover:text-primary transition-colors">
+                    <i class="fa fa-angle-down text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FINAL CTA区块（第八页） -->
+    <section id="final-cta" class="section-height py-20 relative flex items-center star-bg">
+        <!-- 背景图 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/id/185/1920/1080" alt="高能量动作照片" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark to-dark/80"></div>
+        </div>
+        
+        <!-- 装饰线条 -->
+        <div class="absolute inset-0 line-pattern opacity-30 z-0"></div>
+        
+        <!-- 内容 -->
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h2 class="font-montserrat font-bold text-[clamp(1.8rem,4vw,2.5rem)] mb-4 reveal">
+                <span class="heading-highlight">你不需要再等<span class="key-point">完美时机</span><br>
+                你需要的是<span class="key-point">今天开始行动</span></span>
+                <span class="block text-[clamp(1rem,2vw,1.2rem)] mt-4 text-primary text-shadow-green font-normal heading-highlight">
+                    You don't need to wait for the perfect moment<br>
+                    You need to start acting today
+                </span>
+            </h2>
+            
+            <p class="text-xl max-w-2xl mx-auto mb-12 reveal">
+                <span class="text-highlight">当身体<span class="key-point">觉醒</span>，思维<span class="key-point">复苏</span><br>
+                当你<span class="key-point">觉醒</span>，世界也会<span class="key-point">改变</span></span>
+                <span class="block mt-4 text-lg text-primary/80 text-highlight">
+                    When the body awakens, the mind revives<br>
+                    When you awaken, the world changes too
+                </span>
+            </p>
+            
+            <button class="conversion-btn conversion-btn-large conversion-btn-full" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+                申请加入社群 →「我准备觉醒了」
+                <span class="block text-base mt-1 font-normal">限额内测中，需15分钟1对1面谈</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-neutral/60 backdrop-blur-md border-t border-primary/20 py-12 star-bg">
+        <div class="absolute inset-0 line-pattern opacity-10 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- 关于社群 -->
+                <div>
+                    <h3 class="font-montserrat font-bold text-xl mb-4 text-primary heading-highlight">关于Movement People</h3>
+                    <p class="text-light/70 mb-4">About Movement People</p>
+                    
+                    <p class="text-light/70 mb-6">
+                        为行动者打造的高能量社群，用集体力量加速个人成长，释放<span class="key-point">无限潜能</span>。
+                        <span class="block mt-3 text-primary/70 text-sm text-highlight">
+                            A high-energy community for doers, accelerating personal growth through collective strength.
+                        </span>
+                    </p>
+                </div>
+                
+                <!-- 联系方式 -->
+                <div>
+                    <h3 class="font-montserrat font-bold text-xl mb-4 text-primary heading-highlight">联系我们</h3>
+                    <p class="text-light/70 mb-4">Contact Us</p>
+                    
+                    <div class="space-y-3 text-light/70">
+                        <p><i class="fa fa-envelope mr-2 text-primary"></i> johnworld2423@gmail.com</p>
+                        <p><i class="fa fa-weixin mr-2 text-primary"></i> PCoach_John<br>
+                           <span class="ml-6 text-sm text-primary/70">PCoach_John</span></p>
+                        <p><i class="fa fa-instagram mr-2 text-primary"></i> CoachUpgrade.John<br>
+                           <span class="ml-6 text-sm text-primary/70">@CoachUpgrade.John</span></p>
+                        <p><i class="fa fa-book mr-2 text-primary"></i> 小红书：John教练有点叛逆<br>
+                           <span class="ml-6 text-sm text-primary/70">@John教练有点叛逆</span></p>
+                    </div>
+                </div>
+                
+                <!-- 链接 -->
+                <div>
+                    <h3 class="font-montserrat font-bold text-xl mb-4 text-primary heading-highlight">快速链接</h3>
+                    <p class="text-light/70 mb-4">Quick Links</p>
+                    
+                    <div class="space-y-3">
+                        <a href="#" class="text-light/70 hover:text-primary transition-colors">隐私条款 <span class="text-xs text-primary/70">Privacy Policy</span></a><br>
+                        <a href="#" class="text-light/70 hover:text-primary transition-colors">加入须知 <span class="text-xs text-primary/70">Membership Guidelines</span></a><br>
+                        <a href="#" class="text-light/70 hover:text-primary transition-colors">常见问题 <span class="text-xs text-primary/70">FAQ</span></a><br>
+                        <a href="#" class="text-light/70 hover:text-primary transition-colors">行动指南 <span class="text-xs text-primary/70">Action Guide</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-primary/20 text-center text-primary/70">
+                <p>© 2023 Movement People - 用集体能量加速成长 | Accelerate growth through collective energy</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 粒子背景库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- 主脚本 -->
+    <script>
+        // 初始化粒子背景
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 120,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#ffffff", "#32CD32", "#FF4500", "#FFD700"]
+                },
+                "shape": {
+                    "type": "circle",
+                },
+                "opacity": {
+                    "value": 0.3,
+                    "random": true,
+                },
+                "size": {
+                    "value": 2,
+                    "random": true,
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#32CD32",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 0.6,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 0.3
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 5
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        
+        // 数字增长动画
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + '%';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // 进度条动画
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill, .progress-fill-warning');
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        }
+        
+        // 滚动显示动画
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll(".reveal");
+            
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                    
+                    // 当WHO区块激活时，启动数字动画和进度条动画
+                    if (reveals[i].closest('#who')) {
+                        const stats = document.querySelectorAll('.stat-number');
+                        stats.forEach(stat => {
+                            const target = parseInt(stat.getAttribute('data-target'));
+                            animateValue(stat, 0, target, 2000);
+                        });
+                        animateProgressBars();
+                    }
+                }
+            }
+        }
+        
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll(); // 初始检查
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-neutral/80', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-neutral/80', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+        
+        // 移动端菜单
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.remove('translate-x-full');
+        });
+        
+        document.getElementById('menuClose').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.add('translate-x-full');
+        });
+        
+        // 移动端菜单点击后关闭
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('translate-x-full');
+            });
+        });
+        
+        // 移动端按钮震动反馈
+        function vibrateOnClick(event) {
+            // 检查设备是否支持震动API
+            if ("vibrate" in navigator) {
+                // 短震动
+                navigator.vibrate(10);
+            }
+            
+            // 添加视觉反馈动画
+            const btn = event.currentTarget;
+            btn.classList.add('vibrate');
+            setTimeout(() => {
+                btn.classList.remove('vibrate');
+            }, 100);
+        }
+        
+        // 转化动画函数
+        function startConversionAnimation(event, targetUrl) {
+            event.preventDefault();
+            vibrateOnClick(event);
+            
+            // 创建动画容器
+            const container = document.createElement('div');
+            container.className = 'conversion-animation-container';
+            document.body.appendChild(container);
+            
+            // 创建背景能量波
+            createEnergyBackground(container);
+            
+            // 创建音效元素
+            createSounds();
+            
+            // 创建动画文本元素
+            const texts = [
+                { content: '不是每个人都准备好迎接改变。', className: '' },
+                { content: '但你，已经踏出第一步，我为你骄傲。', className: 'shine-transition' },
+                { content: '🔥 正在为你开启『觉醒者通道』...', className: 'text-glow' }
+            ];
+            
+            texts.forEach((text, index) => {
+                const textElement = document.createElement('div');
+                textElement.className = `animation-text text-[clamp(1.2rem,5vw,2rem)] font-montserrat font-bold ${text.className}`;
+                textElement.textContent = text.content;
+                container.appendChild(textElement);
+            });
+            
+            // 创建最终按钮
+            const finalButton = document.createElement('a');
+            finalButton.href = targetUrl;
+            finalButton.target = '_blank';
+            finalButton.rel = 'noopener noreferrer';
+            finalButton.className = 'animation-text conversion-btn conversion-btn-large mt-8';
+            finalButton.textContent = '👉 开始进入';
+            container.appendChild(finalButton);
+            
+            // 播放心跳声
+            document.getElementById('heartbeat-sound').play().catch(e => console.log('Audio play prevented:', e));
+            
+            // 逐步显示动画元素
+            const animationElements = container.querySelectorAll('.animation-text');
+            
+            animationElements[0].classList.add('visible');
+            
+            setTimeout(() => {
+                animationElements[1].classList.add('visible');
+            }, 2000);
+            
+            setTimeout(() => {
+                animationElements[2].classList.add('visible');
+                // 播放能量启动声
+                document.getElementById('energy-sound').play().catch(e => console.log('Audio play prevented:', e));
+            }, 4500);
+            
+            setTimeout(() => {
+                animationElements[3].classList.add('visible');
+            }, 7000);
+        }
+        
+        // 创建背景能量动画
+        function createEnergyBackground(container) {
+            // 创建能量波
+            const energyWave = document.createElement('div');
+            energyWave.className = 'energy-wave';
+            energyWave.style.background = 'radial-gradient(circle, rgba(50,205,50,0.3) 0%, rgba(10,10,10,0) 70%)';
+            energyWave.style.animation = 'energyRise 6s infinite ease-out';
+            container.appendChild(energyWave);
+            
+            // 创建多个光束
+            for (let i = 0; i < 8; i++) {
+                const beam = document.createElement('div');
+                beam.className = 'light-beam';
+                beam.style.left = `${10 + i * 10}%`;
+                beam.style.animation = `beamFlash ${5 + i * 0.5}s infinite ease-in-out ${i * 0.5}s`;
+                container.appendChild(beam);
+            }
+        }
+        
+        // 创建音效元素
+        function createSounds() {
+            // 检查是否已创建音效元素
+            if (!document.getElementById('heartbeat-sound')) {
+                // 心跳声音效
+                const heartbeat = document.createElement('audio');
+                heartbeat.id = 'heartbeat-sound';
+                heartbeat.src = 'https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-1600.mp3';
+                heartbeat.preload = 'auto';
+                document.body.appendChild(heartbeat);
+                
+                // 能量启动音效
+                const energySound = document.createElement('audio');
+                energySound.id = 'energy-sound';
+                energySound.src = 'https://assets.mixkit.co/sfx/preview/mixkit-tech-transmission-start-2574.mp3';
+                energySound.preload = 'auto';
+                document.body.appendChild(energySound);
+            }
+        }
+    </script>
+
+    
+    
+    </body></html>
