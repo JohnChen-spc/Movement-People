@@ -562,7 +562,7 @@
         <div class="mb-16 animate-fade-in-up" style="animation-delay: 1.2s;">
             <p class="text-[clamp(2rem,7vw,3.5rem)] font-montserrat font-black mt-6 text-light text-shadow relative inline-block">
                 <span class="animate-pulse-slow">这是让男人</span>
-                <span class="glow-text text-primary">重生</span>
+               <span class="glow-text text-primary">重生</span>
                 <span class="animate-pulse-slow">的地方。</span>
             </p>
         </div>
@@ -609,35 +609,20 @@
 }
 .animate-pulse-slow { animation: pulse-slow 2.5s infinite; }
 
-/* 光晕扩散（用于“重生”）- 极轻微版 */
+/* 光晕扩散（用于“重生”）- 轻微闪光 */
 @keyframes pulse-glow {
-  0%, 100% { 
-    opacity: 0.95; 
-    transform: scale(1); 
-    filter: blur(1px); 
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1.02); 
-    filter: blur(2px); 
-  }
-}
-.glow-text {
-  animation: pulse-glow 3s ease-in-out infinite;
-  text-shadow: 0 0 4px rgba(255, 200, 80, 0.25);
+  0%, 100% { text-shadow: 0 0 0px #FFB000; }
+  50% { text-shadow: 0 0 2px #FFB000, 0 0 4px #FFAE00; }
 }
 
-/* 文字高光闪烁（用于 Hook） */
-@keyframes glow-text {
-  0%, 100% { text-shadow: 0 0 4px #FFD700; }
-  50% { text-shadow: 0 0 20px #FFD700; }
-}
-.animate-glow-text {
-  display: inline-block;
-  animation: glow-text 2s ease-in-out infinite;
-}
+/* 动画类 */
+.animate-fade-in-up { animation: fade-in-up 1.2s ease-out both; }
+.animate-zoom-in { animation: zoom-in 1.2s ease-out both; }
+.animate-pulse-slow { animation: pulse-slow 2.5s infinite; }
+.animate-glow-highlight { animation: glow-highlight 2.5s ease-in-out infinite alternate; }
+.glow-text { animation: pulse-glow 2.5s ease-in-out infinite alternate; }
 
-/* 文本阴影 & 高亮 */
+/* 文字样式 */
 .text-shadow { text-shadow: 0 2px 12px rgba(255,255,255,0.15); }
 .text-highlight { color: #F5F5F5; }
 .heading-highlight {
@@ -645,11 +630,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-/* 基础动画类 */
-.animate-fade-in-up { animation: fade-in-up 1.2s ease-out both; }
-.animate-zoom-in { animation: zoom-in 1.2s ease-out both; }
-
 </style>
 
 
