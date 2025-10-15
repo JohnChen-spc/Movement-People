@@ -515,7 +515,194 @@
     <div class="container mx-auto px-4 z-10 text-center max-w-4xl">
         
         <!-- 开场语 -->
-        here was an error committing your changes: JohnChen-spc has committed since you started editing
+        <section id="hero" class="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-black text-light">
+  <!-- 宇宙粒子背景 -->
+  <canvas id="cosmic-bg" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-6">
+
+    <!-- 开场语 -->
+    <p class="text-[clamp(1.6rem,5vw,2.4rem)] mb-6 font-bold leading-relaxed animate-fade-in-up text-light/90">
+      <span class="text-highlight italic glow-line">我们的时代，让男人越来越安静，</span><br>
+      <span class="text-highlight italic glow-line" style="animation-delay:0.3s">他们压抑愤怒，隐藏痛苦，却渐渐失去方向。</span>
+    </p>
+
+    <p class="text-[clamp(1.6rem,5vw,2.4rem)] mb-10 font-bold leading-relaxed animate-fade-in-up" style="animation-delay:0.6s;">
+      <span class="text-highlight italic glow-line">而我们，相信真正的力量，不在沉默，而在行动。</span>
+    </p>
+
+    <!-- 核心标题（电流效果） -->
+    <h1 class="font-montserrat font-black text-[clamp(2.6rem,8vw,4.5rem)] leading-tight mb-12 relative inline-block text-shadow animate-zoom-in">
+      <span class="heading-highlight block relative electric-text">
+        Movement People<br>唤醒被压抑的能量
+        <canvas id="electric-effect" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+      </span>
+    </h1>
+
+    <!-- 核心价值 -->
+    <div class="max-w-2xl mx-auto mb-16 text-left animate-fade-in-up" style="animation-delay:1s;">
+      <p class="text-xl mb-6 text-light/90">
+        <span class="text-highlight">
+          我们相信——<br>
+          当一个男人重新行动、重新感受、重新面对自己，<br>
+          他的身体、关系与命运，都会开始转变。
+        </span>
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 my-8">
+        <div class="bg-neutral/50 p-4 rounded-lg border border-primary/30 hover:border-primary/70 transition">
+          <p class="text-primary font-bold text-xl">有力量</p>
+          <p class="text-light/70 text-sm">Physical Strength</p>
+        </div>
+        <div class="bg-neutral/50 p-4 rounded-lg border border-primary/30 hover:border-primary/70 transition">
+          <p class="text-primary font-bold text-xl">有空间</p>
+          <p class="text-light/70 text-sm">Mental Space</p>
+        </div>
+        <div class="bg-neutral/50 p-4 rounded-lg border border-primary/30 hover:border-primary/70 transition">
+          <p class="text-primary font-bold text-xl">有同伴</p>
+          <p class="text-light/70 text-sm">Like-minded Peers</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 行动召唤 -->
+    <div class="mb-16 animate-fade-in-up" style="animation-delay:1.4s;">
+      <p class="text-[clamp(2rem,7vw,3.5rem)] font-montserrat font-black mt-6 text-light text-shadow relative inline-block">
+        <span class="animate-pulse-slow">这是让男人</span>
+        <span class="glow-text text-primary">重生</span>
+        <span class="animate-pulse-slow">的地方。</span>
+      </p>
+    </div>
+
+    <button class="conversion-btn conversion-btn-large conversion-btn-full text-2xl animate-fade-in-up py-8" style="animation-delay:1.8s;" onclick="startConversionAnimation(event, 'https://docs.qq.com/form/page/DTmhEV3hRYVVJUXZO')">
+      加入重生之旅 →「我已准备好」
+      <span class="block text-base mt-1 font-normal">
+        限额内测中，需15分钟1对1面谈
+      </span>
+    </button>
+  </div>
+
+  <!-- 向下滚动提示 -->
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <a href="#who" class="text-light/70 hover:text-primary transition-colors">
+      <i class="fa fa-angle-down text-3xl"></i>
+    </a>
+  </div>
+</section>
+
+<style>
+/* ========== 动画与视觉特效 ========== */
+
+/* 宇宙粒子背景 */
+#cosmic-bg {
+  background: radial-gradient(circle at center, #0a0a0a, #000);
+}
+
+/* 淡入上浮 */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 1.2s ease-out both; }
+
+/* 放大出现 */
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-zoom-in { animation: zoom-in 1s ease-out both; }
+
+/* 电流闪光 */
+@keyframes electric {
+  0%, 100% { filter: drop-shadow(0 0 2px #FFD700); }
+  50% { filter: drop-shadow(0 0 12px #FFAE00); }
+}
+.electric-text {
+  animation: electric 2s ease-in-out infinite;
+}
+
+/* 发光线条 */
+.glow-line {
+  position: relative;
+}
+.glow-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #FFD700, #FFAE00);
+  animation: underline 3s ease-in-out infinite;
+}
+@keyframes underline {
+  0%, 100% { width: 0%; opacity: 0.3; }
+  50% { width: 100%; opacity: 1; }
+}
+
+/* 光晕发光 */
+@keyframes pulse-glow {
+  0%, 100% { text-shadow: 0 0 0px #FFB000; }
+  50% { text-shadow: 0 0 8px #FFB000, 0 0 16px #FFAE00; }
+}
+.glow-text { animation: pulse-glow 2.5s ease-in-out infinite alternate; }
+
+/* 呼吸闪烁 */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+.animate-pulse-slow { animation: pulse-slow 2.5s infinite; }
+
+/* 渐变字体 */
+.heading-highlight {
+  background: linear-gradient(90deg, #FFD700 0%, #FFAE00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-shadow { text-shadow: 0 2px 12px rgba(255,255,255,0.1); }
+.text-highlight { color: #fefefe; }
+</style>
+
+<script>
+/* ========== 粒子背景动画 ========== */
+const canvas = document.getElementById('cosmic-bg');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function createParticles() {
+  particles = Array.from({ length: 80 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2,
+    speed: 0.3 + Math.random() * 0.8,
+  }));
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,215,0,${Math.random() * 0.8})`;
+    ctx.fill();
+    p.y -= p.speed;
+    if (p.y < 0) p.y = canvas.height;
+  });
+  requestAnimationFrame(drawParticles);
+}
+
+createParticles();
+drawParticles();
+</script>
+
 
         <!-- 新增：2. 痛点与觉醒区块（原第二页前插入） -->
 <section id="pain-awaken" class="section-height py-20 relative star-bg">
